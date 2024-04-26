@@ -1,9 +1,9 @@
 const express = require('express');
 const userRouter = require('./routes/userRouter');
 const app = express();
-const bodyParser = require('body-parser');
 const  mongoose=require('mongoose');
-// const { loginRouter } = require('./routes/loginRouter');
+const { loginRouter } = require('./routes/loginRouter');
+// const { validateRegister } = require('./middleware/userAuth');
 require("dotenv").config()
 
 
@@ -16,14 +16,16 @@ mongoose.connect(process.env.MONGO_URL)
 .then(()=> console.log('Database successfully connected '))
 .catch((err)=>{console.log(err)})
 
-//middleware connection 
-app.use(bodyParser.json());
-// app.use(express.json());
+
+//middleware to parse incoming req
+app.use(express.json());
+
+
 
 
 //routes
-app.use('/', userRouter)
-// app.use('/',loginRouter)
+app.use('/',userRouter)
+app.use('/',loginRouter)
 
 
 

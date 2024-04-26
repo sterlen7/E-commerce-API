@@ -1,25 +1,54 @@
-// const User = require('../models/User');
-// const bcrypt = require('bcrypt');
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
-// exports.login= async(res,req)=>{
-//     const  {username,email,password}= req.body
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
 
-//     try{
-//         const user =await User.findOne({username})
-//         if(!user){
-//             return res.json({message:"User does not exist."})
-//         }
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.json({ message: "User does not exist." });
+        }
+        
+        const isPassword = await bcrypt.compare( password , user.password);
 
-//         const userEmail=await User.findOne({email})
-//         if(!userEmail){
-//             return res.json({message:"email does not exist."})
-//         }
+            if (!isPassword) {
+                return res.status(401).json({ msg: "Invalid credential" }); 
+            } 
+res.status(200).json({ msg: "Login success" });
 
-//         const  userPassword =await bcrypt.compare({password})
-//         if(!userPassword){
-//             return res.json({message:"wrong password"})
-//         }
-//     }catch{
-    
-//     }
-// }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
