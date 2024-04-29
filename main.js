@@ -1,8 +1,9 @@
 const express = require('express');
-const userRouter = require('./routes/userRouter');
+const userRouter = require('./routes/registerRouter');
 const app = express();
 const  mongoose=require('mongoose');
 const { loginRouter } = require('./routes/loginRouter');
+const { adminRouter } = require('./Admin/adminRouter');
 // const { validateRegister } = require('./middleware/userAuth');
 require("dotenv").config()
 
@@ -26,6 +27,7 @@ app.use(express.json());
 //routes
 app.use('/',userRouter)
 app.use('/',loginRouter)
+app.use('/',adminRouter)
 
 
 
