@@ -7,6 +7,8 @@ exports.login = async (req, res) => {
 
     try {
         const user = await User.findOne({ $or: [{ email }, { username }] });
+     
+       
         if (!user) {
             return res.json({ message: "User does not exist. Sign up!" });
         }
@@ -31,7 +33,10 @@ res.status(200).json({ msg: "Login success",accessToken});
 
 
 
-
+  
+        // if (!email || !username||!password){
+        //     return res.json ({msg:"Please input your login details"})
+        // }
 
 
 
