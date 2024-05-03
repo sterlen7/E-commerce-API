@@ -32,33 +32,31 @@ res.status(200).json({ msg: "Login success",accessToken});
 
 
 
+// exports.updateProfile = async (req,res)=>{
+//     const {email,password,username}=req.body
 
-  
-        // if (!email || !username||!password){
-        //     return res.json ({msg:"Please input your login details"})
-        // }
+//     const userId= req.user._id
 
+//     try {
+//         // Update user profile
+//         const updatedFields = {};
+//         if (email) updatedFields.email = email;
+//         if(username) updatedFields.username=username
+//         if (password) {
+//             const hashedPassword = await bcrypt.hash(password, 10);
+//             updatedFields.password = hashedPassword;
+//         }
 
+//         const updatedUser = await User.findByIdAndUpdate(userId, updatedFields, { new: true });
 
+//         if (!updatedUser) {
+//             return res.status(404).json({ message: 'User not found' });
+//         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//         res.json(updatedUser);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// };
 

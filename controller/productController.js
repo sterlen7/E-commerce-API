@@ -18,10 +18,13 @@ exports.searchProduct = async (req, res) => {
 
         if (product) {
             return res.status(200).json(product);
+            
         } else {
             
             return res.status(404).json({ message: 'Product not found' });
         }
+
+
     } catch (error) {
        
         console.error('Error searching for product:', error);
