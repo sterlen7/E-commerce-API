@@ -5,7 +5,6 @@ const  mongoose=require('mongoose');
 const { loginRouter } = require('./routes/userRouter');
 const { adminRouter } = require('./Admin/adminRouter');
 const prodRouter = require('./routes/productRouter');
-// const { validateRegister } = require('./middleware/userAuth');
 require("dotenv").config()
 
 
