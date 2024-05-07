@@ -4,7 +4,7 @@ const registerSchema = Joi.object({
     email: Joi.string().email().required().label('Email'),
     password: Joi.string().min(8).required().label('password'),
     username: Joi.string().required().label('User name'),
-    address:Joi.string().required().label('address')
+    address:Joi.string().required().label('Address')
 })
 
 exports.validateRegister = (req, res, next) => {
