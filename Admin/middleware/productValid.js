@@ -9,7 +9,8 @@ const productValidationSchema = Joi.object({
     color: Joi.string().required()
 });
 
-const validateProduct = (req, res, next) => {
+
+exports.validateProduct = (req, res, next) => {
     const { error } = productValidationSchema.validate(req.body);
     if (error) {
         return res.status(400).json({ message: error.details[0].message });
@@ -17,6 +18,5 @@ const validateProduct = (req, res, next) => {
     next();
 };
 
-module.exports = validateProduct;
 
 

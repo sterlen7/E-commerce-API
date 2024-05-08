@@ -6,6 +6,9 @@ exports.login = async (req, res) => {
     const { email, password,username} = req.body;
 
     try {
+        if (!email && !username) {
+            return res.status(400).json({ message: 'Email or username is required' });
+        }
         const user = await User.findOne({ $or: [{ email }, { username }] });
      
        

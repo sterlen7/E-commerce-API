@@ -12,7 +12,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.searchProduct = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name } = req.query.params;
 
         const product = await Product.findOne({ name });
 
