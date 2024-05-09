@@ -12,9 +12,11 @@ exports.getAllProducts = async (req, res) => {
 
 exports.searchProduct = async (req, res) => {
     try {
-        const { name } = req.query.params;
+        const { name } = req.query;
+
 
         const product = await Product.findOne({ name });
+        
 
         if (product) {
             return res.status(200).json(product);
