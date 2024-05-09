@@ -5,7 +5,7 @@ const User=require('../models/User')
 const { Product } = require('../Admin/models/Product');
 
 exports.adminRegister = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password } = req.query;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -18,17 +18,18 @@ exports.adminRegister = async (req, res) => {
         const createdAdmin = await newAdmin.save();
 
         res.status(201).json(createdAdmin);
+        console.log('Admin created successfully ')
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
     }
-    console.log('Admin created successfully ')
 };
 
 
 
+
 exports.adminLogin = async (req, res) => {
-    const { email, password, username } = req.body;
+    const { email, password, username } = req.query;
 
     try {
 
@@ -60,31 +61,6 @@ exports.adminLogin = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
-
-
-exports.adminBanUser= async (req,res)=>{
-    const userId = req.params._id;
-
-    try {
-        // Find the user by ID
-        const user = await User.findById(userId);
-
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Update the user's status to banned
-        user.banned = true;
-
-        // Save the updated user
-        await user.save();
-
-        res.status(200).json({ message: 'User banned successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error' });
-    }
-}
 
 
 
