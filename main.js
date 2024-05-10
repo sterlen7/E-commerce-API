@@ -1,10 +1,10 @@
 const express = require('express');
-const userRouter = require('./routes/registerRouter');
 const app = express();
 const  mongoose=require('mongoose');
-const { loginRouter } = require('./routes/userRouter');
+const {  userRouter } = require('./routes/userRouter');
 const { adminRouter } = require('./Admin/adminRouter');
 const prodRouter = require('./routes/productRouter');
+const regRouter = require('./routes/registerRouter');
 require("dotenv").config()
 
 
@@ -18,15 +18,15 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err)=>{console.log(err)})
 
 
-//middleware to parse json bodies of incoming reques
+//middleware to parse json bodies of incoming 
 app.use(express.json());
 
 
 
 
 //routes
+app.use('/',regRouter)
 app.use('/',userRouter)
-app.use('/',loginRouter)
 app.use('/',adminRouter)
 app.use('/',prodRouter)
 

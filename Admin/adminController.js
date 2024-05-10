@@ -65,7 +65,6 @@ exports.adminLogin = async (req, res) => {
 
 
 
-
 exports.addProduct = async (req, res) => {
     try {
         const { name, description, price, size, color } = req.body;

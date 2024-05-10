@@ -29,19 +29,19 @@ exports.addToCart = async (req, res) => {
         if (!cart) {
             cart = new Cart({
                 user: userId,
-                products: [{ product: product._id, quantity: quantity }], // Use product._id as the product identifier
+                products: [{ product: product.id, quantity: quantity }], // Use product._id as the product identifier
                 totalPrice: totalPrice
             });
         } else {
-            // If the user already has a cart, check if the product is already in the cart
-            const existingProductIndex = cart.products.findIndex(item => item.product.equals(product._id));
+            // user already has a cart, check product is already in the cart
+            const existingProductIndex = cart.products.findIndex(item => item.product.equals(product.id));
 
             if (existingProductIndex !== -1) {
                 // If the product is already in the cart, update the quantity
                 cart.products[existingProductIndex].quantity += quantity;
             } else {
                 // If the product is not in the cart, add it to the cart
-                cart.products.push({ product: product._id, quantity: quantity });
+                cart.products.push({ product: product.id, quantity: quantity });
             }
 
             // Update total price
