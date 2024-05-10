@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err)=>{console.log(err)})
 
 
-//to parse 
+//middleware to parse json bodies of incoming reques
 app.use(express.json());
 
 
