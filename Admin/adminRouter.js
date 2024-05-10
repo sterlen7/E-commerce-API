@@ -8,7 +8,8 @@ const adminRouter = express.Router();
 adminRouter.post('/admin/register',validateAdminReg,adminRegister)
 adminRouter.post('/admin/login',adminLogin)
 adminRouter.post('/products/add',validateProduct,addProduct)
-adminRouter.put('/admin/ban/:id',banUser)
+adminRouter.put('/admin/ban',banUser)
+
 
 
 

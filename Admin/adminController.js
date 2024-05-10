@@ -91,25 +91,17 @@ exports.addProduct = async (req, res) => {
 
 
 
-
 exports.banUser = async (req, res) => {
     try {
+        const username = req.query.username;
+        const user = await User.findOneAndUpdate({ username: username }, { banned: true });
 
-        const userId = req.params._id;
-        const user = await User.findByIdAndUpdate(userId);
-
-  
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        user.banned = true;
-
-        await user.save();
-
         res.status(200).json({ message: 'User banned successfully' });
     } catch (error) {
-
         console.error('Error banning user:', error);
         res.status(500).json({ message: 'Server error' });
     }

@@ -22,9 +22,11 @@ exports.login = async (req, res) => {
                 return res.status(401).json({ msg: "Invalid credential" }); 
             } 
 
-            
+            if(user.banned){
+                return res.status(405).json({msg:"You have been banned contact your admin"})
+            }
 
-const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SEC, { expiresIn: '6000s' });
+        const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SEC, { expiresIn: '6000s' });
 
 
 res.status(200).json({ msg: "Login success",accessToken});
