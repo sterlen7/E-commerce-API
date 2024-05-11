@@ -34,7 +34,8 @@ exports.addToCart = async (req, res) => {
             });
         } else {
             // user already has a cart, check product is already in the cart
-            const existingProductIndex = cart.products.findIndex(item => item.product.equals(product.id));
+            const existingProductIndex = cart.products.findIndex(item => item.product === product.id);
+
 
             if (existingProductIndex !== -1) {
                 // If the product is already in the cart, update the quantity

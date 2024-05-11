@@ -9,6 +9,11 @@ exports.login = async (req, res) => {
         if (!email && !username) {
             return res.status(400).json({ message: 'Email or username is required' });
         }
+        
+
+        if(!password){
+            return res.status(400).json({msg:'Password is required'})
+        }
         const user = await User.findOne({ $or: [{ email }, { username }] });
      
        
