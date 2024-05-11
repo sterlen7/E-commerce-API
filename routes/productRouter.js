@@ -4,6 +4,6 @@ const { getAllProducts, searchProduct } = require('../controller/productControll
 const { validSearch } = require('../middleware/productSearch');
 
 prodRouter.get('/products', getAllProducts);
-prodRouter.get('/products/:name',validSearch,searchProduct)
+prodRouter.get('/products/name',validSearch,searchProduct)
 
 module.exports = prodRouter;

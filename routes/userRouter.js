@@ -2,7 +2,7 @@ const express = require('express');
 const { login, userUpdate } = require('../controller/userController');
 const { userAuth } = require('../middleware/userAuth');
 const { addToCart } = require('../controller/cartController');
-// const { validateLogin } = require('../middleware/loginValidation');
+
 
 
 const userRouter = express.Router();
@@ -20,4 +20,4 @@ module.exports = {userRouter};
 
 
 
-// validateLogin
+

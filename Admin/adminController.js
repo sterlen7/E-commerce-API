@@ -93,7 +93,7 @@ exports.addProduct = async (req, res) => {
 exports.banUser = async (req, res) => {
     try {
         const username = req.query.username;
-        const user = await User.findOneAndUpdate({ username: username }, { banned: true });
+        const user = await User.findOneAndUpdate({ username: username }, {$set:{ banned: true} });
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

@@ -10,6 +10,7 @@ exports.getAllProducts = async (req, res) => {
     }
 };
 
+
 exports.searchProduct = async (req, res) => {
     try {
         const { name } = req.query;

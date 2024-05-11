@@ -9,7 +9,6 @@ exports.login = async (req, res) => {
         if (!email && !username) {
             return res.status(400).json({ message: 'Email or username is required' });
         }
-        
 
         if(!password){
             return res.status(400).json({msg:'Password is required'})
@@ -42,35 +41,22 @@ res.status(200).json({ msg: "Login success",accessToken});
     }
 };
 
-exports.userUpdate= async (req, res) => {
-    const userId = req.user.userId; // Assuming userId is available in the request object after authentication
+
+exports.userUpdate = async (req, res) => {
+    const userId = req.user.id;
     const { username, email, newPassword, address } = req.body;
 
     try {
-        // Find the user by userId
         let user = await User.findById(userId);
-
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Update user details if provided
-        if (username) {
-            user.username = username;
-        }
-        if (email) {
-            user.email = email;
-        }
-        if (newPassword) {
-            // Hash the new password before updating
-            const hashedPassword = await bcrypt.hash(newPassword, 10);
-            user.password = hashedPassword;
-        }
-        if (address) {
-            user.address = address;
-        }
+        if (username) user.username = username;
+        if (email) user.email = email;
+        if (newPassword) user.password = await bcrypt.hash(newPassword, 10);
+        if (address) user.address = address;
 
-        // Save the updated user object
         await user.save();
 
         return res.status(200).json({ message: 'User details updated successfully' });
@@ -79,3 +65,4 @@ exports.userUpdate= async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 };
+
