@@ -1,6 +1,6 @@
 const Admin = require('./models/admin');
 const bcrypt = require('bcrypt');
-const jwt =require('jsonwebtoken')
+const Jwt =require('jsonwebtoken')
 const User=require('../models/User')
 const { Product } = require('../Admin/models/Product');
 
@@ -53,7 +53,7 @@ exports.adminLogin = async (req, res) => {
         }
 
        
-        const accessToken = jwt.sign({ adminId: admin._id }, process.env.JWT_SEC, { expiresIn: '6000s' })
+        const accessToken = Jwt.sign({ adminId: admin.id }, process.env.JWT_SEC, { expiresIn: '6000s' })
         
         res.status(200).json({ message: 'Admin login successful', accessToken });
     } catch (err) {
@@ -63,13 +63,10 @@ exports.adminLogin = async (req, res) => {
 };
 
 
-
-
 exports.addProduct = async (req, res) => {
     try {
         const { name, description, price, size, color } = req.body;
         
-       
         const newProduct = new Product({
             name,
             description,
