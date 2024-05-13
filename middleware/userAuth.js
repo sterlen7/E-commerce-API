@@ -9,17 +9,17 @@ exports.userAuth = async (req, res, next) => {
     }
 
     try {
-        // Verify the token
+     
         const decoded = Jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SEC);
 
-        // Extract user information from the decoded token
+       
         const user = await User.findById(decoded.userId);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Attach the user information to the request object
+       
         req.user = user;
 
         next();
