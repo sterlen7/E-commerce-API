@@ -4,6 +4,7 @@ const Jwt =require('jsonwebtoken')
 const User=require('../models/User')
 const { Product } = require('../Admin/models/Product');
 
+
 exports.adminRegister = async (req, res) => {
     const { username, email, password } = req.query;
 
@@ -26,12 +27,11 @@ exports.adminRegister = async (req, res) => {
 };
 
 
-
-
 exports.adminLogin = async (req, res) => {
     const { email, password, username } = req.query;
 
     try {
+
 
         if (!email && !username) {
             return res.status(400).json({ message: 'Email or username is required' });
@@ -65,6 +65,7 @@ exports.adminLogin = async (req, res) => {
 
 exports.addProduct = async (req, res) => {
     try {
+
         const { name, description, price, size, color } = req.body;
         
         const newProduct = new Product({
@@ -84,7 +85,6 @@ exports.addProduct = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
-
 
 
 exports.banUser = async (req, res) => {

@@ -6,7 +6,7 @@ const productValidationSchema = Joi.object({
     description: Joi.string().required(),
     price: Joi.number().required(),
     size: Joi.string().required(),
-    color: Joi.string().required()
+    color: Joi.string().required(),
 });
 
 

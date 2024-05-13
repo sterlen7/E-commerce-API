@@ -13,5 +13,4 @@ adminRouter.put('/admin/ban',adminAuth,banUser)
 
 
 
-
 module.exports = {adminRouter};
